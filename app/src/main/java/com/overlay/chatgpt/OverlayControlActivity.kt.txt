@@ -1,0 +1,76 @@
+package com.overlay.chatgpt
+
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import android.provider.Settings
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class OverlayControlActivity : AppCompatActivity() {
+    
+    private val OVERLAY_PERMISSION_REQUEST = 1001
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                requestOverlayPermission()
+            } else {
+                startOverlayService()
+            }
+        } else {
+            startOverlayService()
+        }
+    }
+    
+    private fun requestOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val intent = Intent(
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:$packageName")
+            )
+            startActivityForResult(intent, OVERLAY_PERMISSION_REQUEST)
+        }
+    }
+    
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        
+        if (requestCode == OVERLAY_PERMISSION_REQUEST) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(this)) {
+                startOverlayService()
+            } else {
+                Toast.makeText(this, "Overlay permission required", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+    
+    private fun startOverlayService() {
+        val serviceIntent = Intent(this, OverlayService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(serviceIntent)
+        } else {
+            startService(serviceIntent)
+        }
+        finish()
+    }
+    
+    companion object {
+        fun sendFadeCommand(context: Context) {
+            context.startService(Intent(context, OverlayService::class.java).apply {
+                action = "FADE"
+            })
+        }
+        
+        fun sendRestoreCommand(context: Context) {
+            context.startService(Intent(context, OverlayService::class.java).apply {
+                action = "RESTORE"
+            })
+        }
+    }
+}

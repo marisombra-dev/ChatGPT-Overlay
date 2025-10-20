@@ -1,20 +1,48 @@
+﻿# Built application files
 *.apk
+*.aar
 *.ap_
 *.aab
+
+# Files for the ART/Dalvik VM
 *.dex
+
+# Java class files
 *.class
+
+# Generated files
 bin/
 gen/
 out/
 release/
+
+# Gradle files
 .gradle/
 build/
+
+# Local configuration file
 local.properties
+
+# IntelliJ
 *.iml
 .idea/
-.DS_Store
-/captures
-.externalNativeBuild
-.cxx
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+# Keystore files
 *.jks
 *.keystore
+
+# External native build folder
+.cxx/
+.externalNativeBuild/
+
+# Google Services
+google-services.json
+
+# Android Profiling
+*.hprof
+
+# Mac
+.DS_Store

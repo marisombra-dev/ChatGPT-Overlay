@@ -52,25 +52,7 @@ class OverlayControlActivity : AppCompatActivity() {
     
     private fun startOverlayService() {
         val serviceIntent = Intent(this, OverlayService::class.java)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(serviceIntent)
-        } else {
-            startService(serviceIntent)
-        }
+        startService(serviceIntent)  // Simple startService, not foreground
         finish()
-    }
-    
-    companion object {
-        fun sendFadeCommand(context: Context) {
-            context.startService(Intent(context, OverlayService::class.java).apply {
-                action = "FADE"
-            })
-        }
-        
-        fun sendRestoreCommand(context: Context) {
-            context.startService(Intent(context, OverlayService::class.java).apply {
-                action = "RESTORE"
-            })
-        }
     }
 }

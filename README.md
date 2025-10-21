@@ -39,3 +39,9 @@ Replace app/src/main/res/raw/avatar_lipsync.gif with your own animated GIF.
 License
 
 MIT
+
+## 💫 Let's connect
+- 💌 [Email](mailto:marisombra@proton.me)
+- 🎮 [Twitch](https://www.twitch.tv/marissombra)    
+- 🧵 [TikTok](https://www.tiktok.com/@marissombra)
+- 🪩 [Itch.io](https://marisombra.itch.io/) (for games)

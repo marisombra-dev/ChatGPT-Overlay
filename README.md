@@ -14,7 +14,11 @@ Features
 
 👻 Transparent background
 
+## 🎬 Screenshot
 
+![Overlay in Action](screenshot.png)
+
+*Voice Mode Communication with ChatGPT in real-time*
 Installation
 
 Clone this repository

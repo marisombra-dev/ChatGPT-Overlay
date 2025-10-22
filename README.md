@@ -16,7 +16,7 @@ Features
 
 ## 🎬 Screenshot
 
-![Overlay in Action](screenshot.png)
+![Overlay in Action](Screenshot_20251022_205144.jpg)
 
 *Voice Mode Communication with ChatGPT in real-time*
 Installation
